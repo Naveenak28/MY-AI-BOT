@@ -1,8 +1,39 @@
-import random
+from abc import update_abstractmethods
+from curses import update_lines_cols
+from functools import update_wrapper
+from itertools import filterfalse
+from logging import Filter
+import random 
+import telegram
+import openai
 import re
 
+from telegram.ext import MessageHandler, Updater
+
+
+openai.api_key = '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'
+
+def handle_message(update, context):
+    user_message = update.message.text
+    # Send the user's message to OpenAI API
+    response = openai.Completion.create(
+        engine="text-davinci-003",
+        prompt=user_message,
+        max_tokens=150  # You can adjust this based on your needs
+    )
+    
+    updater = Updater(token='6390734607:AAGIF7Vr0b7FRS1fGOaivzGhvGBkst-CERk', use_context=True)
+dispatcher = update_abstractmethods.dispatcher
+
+
+message_handler = MessageHandler(Filter.text & ~filterfalse.command, handle_message)
+dispatcher.add_handler(message_handler)
+
+update_lines_cols.start_polling()
+update_wrapper.idle()
+         
 class RuleBot:
-    ##response
+
     negative_res = ("no","nope","nah","naw","not a chance","sorry")
     exit_commands = ("quit","pause","exit","goodbye","bye","later")
     
