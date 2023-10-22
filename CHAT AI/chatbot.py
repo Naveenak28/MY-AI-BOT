@@ -11,7 +11,7 @@ import re
 from telegram.ext import MessageHandler, Updater
 
 
-openai.api_key = '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'
+openai.api_key = 'ENTER YOUR API'
 
 def handle_message(update, context):
     user_message = update.message.text
@@ -22,7 +22,7 @@ def handle_message(update, context):
         max_tokens=150  # You can adjust this based on your needs
     )
     
-    updater = Updater(token='6390734607:AAGIF7Vr0b7FRS1fGOaivzGhvGBkst-CERk', use_context=True)
+    updater = Updater(token='ENTER TOKEB', use_context=True)
 dispatcher = update_abstractmethods.dispatcher
 
 
